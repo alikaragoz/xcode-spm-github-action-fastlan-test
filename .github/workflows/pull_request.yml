@@ -1,0 +1,40 @@
+name: Pull request
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    if: github.event.pull_request.draft == false
+    runs-on: macos-11
+    timeout-minutes: 60
+    steps:
+      - name: Git - Checkout
+        uses: actions/checkout@v2.4.0
+        with:
+          ref: ${{ github.event.ref }}
+          token: ${{ secrets.ACCESS_TOKEN }}
+          submodules: recursive
+
+      - name: Setup - Xcode
+        run: sudo xcode-select -s /Applications/Xcode_13.2.1.app
+
+      - uses: actions/cache@v3
+        with:
+          path: /Users/runner/work/xcode-spm-github-action-fastlane-test/build/DerivedData/DummyProject/SourcePackages/checkouts
+          key: ${{ runner.os }}-spm-${{ hashFiles('DummyProject/DummyProject.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-spm-
+
+      - name: Setup - Ruby and bundler dependencies
+        uses: ruby/setup-ruby@v1.100.0
+        with:
+          ruby-version: 3.1.1
+          bundler-cache: true
+
+      - name: Build and test
+        run: bundle exec fastlane tests

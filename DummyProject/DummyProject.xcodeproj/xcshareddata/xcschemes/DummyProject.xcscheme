@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7B30698328343FD9000AC21A"
                BuildableName = "DummyProject.app"
-               BlueprintName = "DummyProject (iOS)"
+               BlueprintName = "DummyProject"
                ReferencedContainer = "container:DummyProject.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,7 +46,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7B30698328343FD9000AC21A"
             BuildableName = "DummyProject.app"
-            BlueprintName = "DummyProject (iOS)"
+            BlueprintName = "DummyProject"
             ReferencedContainer = "container:DummyProject.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -63,7 +63,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7B30698328343FD9000AC21A"
             BuildableName = "DummyProject.app"
-            BlueprintName = "DummyProject (iOS)"
+            BlueprintName = "DummyProject"
             ReferencedContainer = "container:DummyProject.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

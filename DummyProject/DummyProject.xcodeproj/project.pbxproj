@@ -71,9 +71,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7B30698328343FD9000AC21A /* DummyProject (iOS) */ = {
+		7B30698328343FD9000AC21A /* DummyProject */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7B30699528343FD9000AC21A /* Build configuration list for PBXNativeTarget "DummyProject (iOS)" */;
+			buildConfigurationList = 7B30699528343FD9000AC21A /* Build configuration list for PBXNativeTarget "DummyProject" */;
 			buildPhases = (
 				7B30698028343FD9000AC21A /* Sources */,
 				7B30698128343FD9000AC21A /* Frameworks */,
@@ -83,7 +83,7 @@
 			);
 			dependencies = (
 			);
-			name = "DummyProject (iOS)";
+			name = DummyProject;
 			packageProductDependencies = (
 				7B30699D28344124000AC21A /* MyDummyLibrary */,
 			);
@@ -119,7 +119,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7B30698328343FD9000AC21A /* DummyProject (iOS) */,
+				7B30698328343FD9000AC21A /* DummyProject */,
 			);
 		};
 /* End PBXProject section */
@@ -330,7 +330,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7B30699528343FD9000AC21A /* Build configuration list for PBXNativeTarget "DummyProject (iOS)" */ = {
+		7B30699528343FD9000AC21A /* Build configuration list for PBXNativeTarget "DummyProject" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7B30699628343FD9000AC21A /* Debug */,
