@@ -1,17 +1,17 @@
 default_platform(:ios)
 
 platform :ios do
-  lane :build do |options|
-    gym(
+  lane :test do |options|
+    scan(
       project: 'DummyProject.xcodeproj',
       scheme: 'DummyProject',
-      derived_data_path: 'build/DerivedData',
+      derived_data_path: '../build/DerivedData',
+      device: 'iPhone 8',
+      code_coverage: false,
       clean: true,
-      configuration: 'Release',
-      skip_package_ipa: true,
-      skip_archive: true,
       cloned_source_packages_path:
-        'build/DerivedData/DummyProject/SourcePackages',
+        '../build/DerivedData/DummyProject/SourcePackages',
+      skip_package_dependencies_resolution: true,
     )
   end
 end
