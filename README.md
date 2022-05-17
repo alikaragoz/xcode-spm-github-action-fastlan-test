@@ -1,1 +1,1 @@
-# xcode-spm-github-action-fastlan-test
+# xcode-spm-github-action-fastlane-test
