@@ -10,9 +10,12 @@ import Get
 import Logging
 import Sentry
 import Amplitude
+import Apollo
+import AppboyKit
 
 @main
 struct DummyProjectApp: App {
+    let foobar = "barfoo"
     var body: some Scene {
         WindowGroup {
             ContentView()

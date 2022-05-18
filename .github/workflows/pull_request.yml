@@ -1,4 +1,9 @@
 name: Pull request
+
+env:
+  FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: 120
+  FASTLANE_XCODEBUILD_SETTINGS_RETRIES: 6
+
 on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
@@ -8,10 +13,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  tests:
-    if: github.event.pull_request.draft == false
+  build:
     runs-on: macos-11
-    timeout-minutes: 60
+    timeout-minutes: 120
     steps:
       - name: Git - Checkout
         uses: actions/checkout@v2.4.0
@@ -20,21 +24,24 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN }}
           submodules: recursive
 
+      - name: Setup - Ruby and bundler dependencies
+        uses: ruby/setup-ruby@v1.100.0
+        with:
+          ruby-version: 3.1.1
+
+      - name: Setup Fastlane
+        run: bundle install
+
       - name: Setup - Xcode
         run: sudo xcode-select -s /Applications/Xcode_13.2.1.app
 
       - uses: actions/cache@v3
         with:
-          path: /Users/runner/work/xcode-spm-github-action-fastlane-test/build/DerivedData/DummyProject/SourcePackages/checkouts
+          path: /Users/runner/work/xcode-spm-github-action-fastlane-test/xcode-spm-github-action-fastlane-test/build/DerivedData/DummyProject/SourcePackages/checkouts
           key: ${{ runner.os }}-spm-${{ hashFiles('DummyProject/DummyProject.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
           restore-keys: |
             ${{ runner.os }}-spm-
 
-      - name: Setup - Ruby and bundler dependencies
-        uses: ruby/setup-ruby@v1.100.0
-        with:
-          ruby-version: 3.1.1
-          bundler-cache: true
-
-      - name: Build and test
-        run: bundle exec fastlane tests
+      - name: Test app
+        working-directory: DummyProject
+        run: bundle exec fastlane test
